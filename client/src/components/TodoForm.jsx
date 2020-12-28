@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
+import {Props} from "../App"
 
 function TodoForm(props) {
   const [input, setInput] = useState("");
+  const {handleSubmit} = useContext(Props);
 
   const handlesubmitcases = (e) => {
     e.preventDefault();
     if (e.target[0].value.length) {
-      props.handleSubmit(e.target[0].value);
+      // props.handleSubmit(e.target[0].value);
+      handleSubmit(e.target[0].value);
       setInput("");
     }
   };

@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState ,useContext} from "react";
+import {Props} from '../App'
 
 const Todo = (props) => {
   const [Rewriteflag, setRewriteflag] = useState(false);
+  const {handleDelete,handleRewrite} = useContext(Props);
 
   const handleRewritecases = (e) => {
     e.preventDefault();
-    props.handleRewrite(props.id, e.target[0].value);
+    // props.handleRewrite(props.id, e.target[0].value);
+    handleRewrite(props.id, e.target[0].value);
     setRewriteflag(false);
   };
 
@@ -21,7 +24,8 @@ const Todo = (props) => {
             value={input}
             onChange={(e) => {
               setInput(e.target.value);
-              if (e.target.value === "") props.handleDelete(props.id);
+              if (e.target.value === "") handleDelete(props.id)
+              // props.handleDelete(props.id);
             }}
           />
           <button className=" btn btn-outline-warning">Update</button>
@@ -42,7 +46,8 @@ const Todo = (props) => {
           <button
             className="Dbutton-pos btn btn-outline-danger"
             onClick={() => {
-              props.handleDelete(props.id);
+              handleDelete(props.id)
+              // props.handleDelete(props.id);
             }}
           >
             Delete
